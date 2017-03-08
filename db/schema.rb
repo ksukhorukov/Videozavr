@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170308182706) do
+ActiveRecord::Schema.define(version: 20170308192749) do
 
   create_table "screenshots", force: :cascade do |t|
     t.string   "file_path"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20170308182706) do
     t.string   "processed_video"
     t.string   "file_size"
     t.string   "duration"
+    t.boolean  "ready"
     t.index ["user_id", "created_at"], name: "index_videos_on_user_id_and_created_at"
   end
 

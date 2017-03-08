@@ -10,10 +10,6 @@ class VideoWorker
 
     output_file = 'processed_videos/' + random_file_name('mp4')
 
-    ffmpeg_command_convertion = %{
-      ffmpeg -i #{input_file} -vcodec copy -acodec copy #{output_file}
-    }
-
     ffmpeg_command_watermark = %{ 
       ffmpeg -i #{input_file} \
              -vf drawtext="fontfile=fonts/Verdana.ttf: \
@@ -22,11 +18,6 @@ class VideoWorker
              -codec:a copy #{output_file} }
 
     ffprobe_command_duration = "ffprobe -i #{output_file} -show_entries format=duration -v quiet -of csv=\"p=0\""
-
-    # unless File.extname(input_file) == '.mp4'
-    #   system(ffmpeg_command_convertion)
-    #   system("yes | cp -rf #{output_file} #{input_file}")
-    # end
 
     system(ffmpeg_command_watermark)
 
@@ -43,11 +34,10 @@ class VideoWorker
       time = Time.at(screenshot_time.to_i).utc.strftime("%H:%M:%S")
       ffmpeg_screenshot_command = "ffmpeg -ss #{time} -i #{input_file} -vframes 1 #{file_path}"
       system(ffmpeg_screenshot_command)
-      byebug
       video.screenshots.create(file_path: file_path)
       screenshot_time += screenshot_time
     end
-
+    video.ready = true
     video.save
   end
 
