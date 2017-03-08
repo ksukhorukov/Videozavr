@@ -1,0 +1,25 @@
+<li>
+  <span class="content"><%= @micropost.content %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(@micropost.created_at) %> ago.
+  </span>
+  <span class="likes">
+      <% if @micropost.liked?(current_user) %>
+        <%= form_for(current_user.likes.find_by_micropost_id(@micropost.id),
+                     html: { method: :delete }) do |f| %>
+          <%= f.submit "Dislike", class: "btn btn-large" %>
+        <% end %>
+      <% else %>
+        <%= form_for(current_user.likes.build(micropost_id: @micropost.id)) do |f| %>
+          <div><%= f.hidden_field :micropost_id %></div>
+          <%= f.submit "Like", class: "btn btn-large btn-primary" %>
+        <% end %>      
+      <% end %>
+      Likes: <%= @micropost.likes.count %></br>
+  </span>
+  <% if current_user?(@micropost.user) %>
+    <%= link_to "delete", @micropost, method: :delete,
+                                     data: { confirm: 'You sure?' },
+                                     title: @micropost.content %>
+  <% end %>
+</li>

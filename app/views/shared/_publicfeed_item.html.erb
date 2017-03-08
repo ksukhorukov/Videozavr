@@ -1,0 +1,18 @@
+
+<li id="<%= publicfeed_item.id %>">
+<%= link_to gravatar_for(publicfeed_item.user), publicfeed_item.user %>
+<span class="user">
+  <%= link_to publicfeed_item.user.name, publicfeed_item.user %>
+</span>
+
+<span class="content"><%= publicfeed_item.micropost.content %></span>
+<span class="timestamp">
+  Posted <%= time_ago_in_words(publicfeed_item.created_at) %> ago.
+</span>
+<span class="likes">
+    Likes: <%= publicfeed_item.micropost.likes.count %></br>
+</span>
+</li>
+<% end %>
+
+
