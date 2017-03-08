@@ -22,6 +22,6 @@
   <% if current_user?(video.user) %>
     <%= link_to "delete", video, method: :delete,
                                      data: { confirm: 'You sure?' },
-                                     title: video.content %>
+                                     title: video.watermark %>
   <% end %>
 </li>

@@ -34,6 +34,9 @@ class VideoWorker
     screenshot_interval = duration * 60 / 4
     screenshot_time = screenshot_interval
 
+    FileUtils.mkdir_p 'public/images'
+    FileUtils.mkdir_p 'public/images/screenshots_videos/'
+
     while(screenshot_time < duration * 60) do 
       file_path = 'public/images/screenshots_videos/' + random_file_name('jpg')
       time = Time.at(screenshot_time.to_i).utc.strftime("%H:%M:%S")

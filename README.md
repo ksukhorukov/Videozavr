@@ -2,34 +2,27 @@
 
 Create custom text watermarks on custom video files
 
-* Ruby version
+## Requirements
 
-2.3.0
+* Ruby version 2.3.0
 
-* System dependencies
 
-ffmpeg
+## System dependencies
 
-* Configuration
 
-Install ffmpeg with '--with-freetype' option 
+Install ffmpeg with ``--with-freetype`` option 
 
 For instance on Mac OS X it can be done with such command:
 
-$ brew install ffpmpeg --with-freetype
+``brew install ffpmpeg --with-freetype``
 
-* Database creation
+## Install and deploy
 
-$ rake db:setup
+Execute the following commands in the main folder of the project
 
-* Services (job queues, cache servers, search engines, etc.)
-
-$ brew install redis
-$ redis-server
-$ bundle exec sidekiq
-
-* Deployment instructions
-
-$ rails s
-
-
+* bundle install
+* rake db:setup
+* brew install redis
+* redis-server
+* bundle exec sidekiq
+* rails s
