@@ -21,4 +21,4 @@
 .byebug_history
 public/uploads/*
 processed_videos/*
-screenshots_videos/*
+public/images/screenshots_videos/*

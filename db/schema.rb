@@ -32,8 +32,6 @@ ActiveRecord::Schema.define(version: 20170308192749) do
   end
 
   create_table "videos", force: :cascade do |t|
-    t.string   "content"
-    t.string   "filename"
     t.string   "watermark"
     t.integer  "user_id"
     t.datetime "created_at",      null: false

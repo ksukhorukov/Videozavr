@@ -3,13 +3,30 @@
     <span class="user">
       <%= link_to feed_item.user.name, feed_item.user %>
     </span>
-    <span class="content"><%= feed_item.content %></span>
+    <span class="content"><%= feed_item.watermark %></span>
+    <br>
+    <section>
+      <br>Screenshots:
+      <table>
+        <tr>
+        <% feed_item.screenshots.each do |shot| %>
+          <td><%= link_to image_tag(shot.file_path,  height: 160, width: 160), "images/#{shot.file_path}", target: '_blank' %></td>
+        <% end %>
+        </tr>
+        <tr>
+          <td colspan="2">
+            Duration: <%= feed_item.duration %> minutes<br>
+            File size: <%= feed_item.file_size %> megabytes
+          </td>
+      </table>
+    </section>
+    <br>
     <span class="timestamp">
       Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
     </span>
   <% if current_user?(feed_item.user) %>
     <%= link_to "delete", feed_item, method: :delete,
                                      data: { confirm: "You sure?" },
-                                     title: feed_item.content %>
+                                     title: feed_item.watermark %>
   <% end %>
 </li>

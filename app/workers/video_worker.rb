@@ -30,11 +30,11 @@ class VideoWorker
     screenshot_time = screenshot_interval
 
     while(screenshot_time < duration * 60) do 
-      file_path = 'screenshots_videos/' + random_file_name('jpg')
+      file_path = 'public/images/screenshots_videos/' + random_file_name('jpg')
       time = Time.at(screenshot_time.to_i).utc.strftime("%H:%M:%S")
       ffmpeg_screenshot_command = "ffmpeg -ss #{time} -i #{input_file} -vframes 1 #{file_path}"
       system(ffmpeg_screenshot_command)
-      video.screenshots.create(file_path: file_path)
+      video.screenshots.create(file_path: file_path.gsub('public/images/',''))
       screenshot_time += screenshot_time
     end
     video.ready = true
