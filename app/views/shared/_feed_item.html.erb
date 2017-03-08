@@ -3,7 +3,7 @@
     <span class="user">
       <%= link_to feed_item.user.name, feed_item.user %>
     </span>
-    <span class="content"><%= feed_item.watermark %></span>
+    <span class="content"><%= video_tag feed_item.processed_video, :size => "320x240", :controls => true %></span>
     <br>
     <section>
       <br>Screenshots:

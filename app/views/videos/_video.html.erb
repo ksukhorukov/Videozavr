@@ -1,5 +1,21 @@
 <li>
-  <span class="content"><%= video.watermark %></span>
+  <span class="content"><%= video_tag video.processed_video, :size => "320x240", :controls => true %></span>
+  <section>
+    <br>Screenshots:
+    <table>
+      <tr>
+      <% video.screenshots.each do |shot| %>
+        <td><%= link_to image_tag(shot.file_path,  height: 160, width: 160), "images/#{shot.file_path}", target: '_blank' %></td>
+      <% end %>
+      </tr>
+      <tr>
+        <td colspan="2">
+          Duration: <%= video.duration %> minutes<br>
+          File size: <%= video.file_size %> megabytes
+        </td>
+    </table>
+  </section>
+  <br>
   <span class="timestamp">
     Posted <%= time_ago_in_words(video.created_at) %> ago.
   </span>
