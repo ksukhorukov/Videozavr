@@ -3,8 +3,16 @@ require 'fileutils'
 class VideoWorker
   include Sidekiq::Worker
 
-  def perform(video_id)
+  def perform(video_id, update = false)
     video = Video.find(video_id)
+
+    if update
+      FileUtils.rm('public/videos/' + video.processed_video)
+      video.screenshots.each do |shot|
+        FileUtils.rm 'public/images/' + shot.file_path
+        shot.destroy
+      end
+    end
 
     input_file = video.movie.file.file
 

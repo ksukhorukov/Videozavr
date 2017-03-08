@@ -1,0 +1,8 @@
+<h2>Edit video:</h2>
+<%= form_for(@video) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_field :watermark, placeholder: "Watermark..." %>
+  </div>
+  <%= f.submit "Update watermark!", class: "btn btn-large btn-primary" %>
+<% end %>

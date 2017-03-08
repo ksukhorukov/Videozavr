@@ -20,6 +20,7 @@
     Posted <%= time_ago_in_words(video.created_at) %> ago.
   </span>
   <% if current_user?(video.user) %>
+    <%= link_to "edit", edit_video_path(video) %>
     <%= link_to "delete", video, method: :delete,
                                      data: { confirm: 'You sure?' },
                                      title: video.watermark %>
