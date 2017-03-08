@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   
   root to: 'static_pages#home'
@@ -10,4 +12,8 @@ Rails.application.routes.draw do
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
 
+  mount Sidekiq::Web => '/sidekiq'
+
 end
+
+

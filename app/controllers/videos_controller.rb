@@ -5,7 +5,8 @@ class VideosController < ApplicationController
   def create
     @video = current_user.videos.build(video_params)
     if @video.save
-      flash[:success] = "video created!"
+      flash[:success] = "Video upload successfully! Processing video. Wait a minute and then refresh the page..."
+      VideoWorker.perform_async(@video.id)
       redirect_to root_url
     else
       @feed_items = []
@@ -21,7 +22,7 @@ class VideosController < ApplicationController
   private
 
     def video_params
-      params.require(:video).permit(:content, :movie)
+      params.require(:video).permit(:watermark, :movie)
     end
 
     def correct_user
