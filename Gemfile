@@ -38,6 +38,7 @@ gem 'bcrypt', '~> 3.1', '>= 3.1.11'
 gem 'bootstrap-sass', '2.3.2.0'
 gem 'will_paginate', '~> 3.1', '>= 3.1.5'
 gem 'bootstrap-will_paginate', '~> 0.0.10'
+gem 'carrierwave', '~> 1.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

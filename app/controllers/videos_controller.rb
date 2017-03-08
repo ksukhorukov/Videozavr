@@ -21,7 +21,7 @@ class VideosController < ApplicationController
   private
 
     def video_params
-      params.require(:video).permit(:content)
+      params.require(:video).permit(:content, :movie)
     end
 
     def correct_user
